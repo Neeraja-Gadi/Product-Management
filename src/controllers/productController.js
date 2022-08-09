@@ -2,6 +2,8 @@ const productModel = require('../models/productModel')
 const aws = require('./awsController')
 const valid = require('../middleware/validation')
 
+// ****************************************************************************************************************
+
 const createProduct = async function(req, res) {
 
     try {
@@ -125,7 +127,7 @@ const createProduct = async function(req, res) {
     }
 }
 
-
+// ****************************************************************************************************************
 
 const getQueryProduct = async(req, res) => {
 
@@ -201,6 +203,7 @@ const getQueryProduct = async(req, res) => {
 }
 
 
+// ****************************************************************************************************************
 
 const getProductById = async(req, res) => {
 
@@ -225,6 +228,7 @@ const getProductById = async(req, res) => {
 
 }
 
+// ****************************************************************************************************************
 
 
 const updateProduct = async(req, res) => {
@@ -259,8 +263,6 @@ const updateProduct = async(req, res) => {
         final.title = title
     }
 
-
-
     if (description) {
         if (!valid.isValidString(description)) {
             return res.status(400).send({ status: false, message: "invalid description details" });
@@ -268,8 +270,6 @@ const updateProduct = async(req, res) => {
 
         final.description = description
     }
-
-
 
     if (price) {
         price = parseFloat(price)
@@ -295,8 +295,6 @@ const updateProduct = async(req, res) => {
 
     }
 
-
-
     if (currencyFormat) {
         if (!valid.isValidString(currencyFormat)) {
             return res.status(400).send({ status: false, message: "Currency Format not mentioned or not in correct format." })
@@ -309,7 +307,6 @@ const updateProduct = async(req, res) => {
 
     }
 
-
     if (style) {
         if (!valid.isValidString(style)) {
             return res.status(400).send({ status: false, message: "Invalid style details" });
@@ -321,7 +318,7 @@ const updateProduct = async(req, res) => {
 
 
     if (availableSizes) {
-        console.log(availableSizes);
+        // console.log(availableSizes);
         const size = ['S', 'XS', 'M', 'X', 'L', 'XXL', 'XL']
 
         if (availableSizes.length == 0) {
@@ -331,7 +328,7 @@ const updateProduct = async(req, res) => {
 
         availableSizes = availableSizes.map(x => x.trim().toUpperCase())
 
-        console.log(availableSizes);
+        // console.log(availableSizes);
 
         let a = (availableSizes.map(x => {
             if (size.includes(x)) return true
@@ -354,14 +351,10 @@ const updateProduct = async(req, res) => {
             return res.status(400).send({ status: false, message: "FreeShipping must have value of either True or False" })
         }
 
-        // if (typeof isFreeShipping !== 'boolean') {
-        //     return res.status(400).send({ status: false, message: "FreeShipping must have value of either True or False" });
-        // }
-
         final.isFreeShipping = isFreeShipping
     }
-    console.log(isFreeShipping)
-    console.log(final)
+    
+    // console.log(final)
 
     if (installments) {
         installments = parseInt(installments)
@@ -387,7 +380,7 @@ const updateProduct = async(req, res) => {
     return res.status(200).send({ status: true, message: "Successfully Updated", data: updatedproduct })
 }
 
-
+// ****************************************************************************************************************
 
 const deleteProduct = async(req, res) => {
 

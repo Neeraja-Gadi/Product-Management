@@ -1,9 +1,9 @@
 const cartModel = require('../models/cartModel')
 const orderModel = require('../models/orderModel')
-    // const productModel = require('../models/productModel')
-    // const userModel = require('../models/userModel')
 const valid = require('../middleware/validation');
 const userModel = require('../models/userModel');
+
+// ****************************************************************************************************************
 
 const createOrder = async function(req, res) {
 
@@ -77,6 +77,8 @@ const createOrder = async function(req, res) {
         res.status(500).send({ status: false, Message: error.message })
     }
 }
+
+// ****************************************************************************************************************
 
 const updateOrder = async function(req, res) {
 

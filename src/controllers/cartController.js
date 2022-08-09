@@ -102,6 +102,7 @@ const createCart = async function(req, res) {
     }
 }
 
+// ****************************************************************************************************************
 
 const updateCart = async(req, res) => {
 
@@ -118,8 +119,6 @@ const updateCart = async(req, res) => {
             return res.status(400).send({ status: false, message: "Please enter some DETAILS!!!" })
         }
 
-
-
         if (!valid.isValidString(productId)) {
             return res.status(400).send({ status: false, messege: "ProductId not mentioned or not in correct format." })
         }
@@ -131,8 +130,6 @@ const updateCart = async(req, res) => {
             return res.status(404).send({ status: false, message: "Product not found" })
         }
 
-
-
         if (!valid.isValidString(cartId)) {
             return res.status(400).send({ status: false, messege: "CartId not mentioned or not in correct format." })
         }
@@ -143,7 +140,7 @@ const updateCart = async(req, res) => {
 
 
         if (!cartAvailable) {
-            return res.status(404).send({ status: false, message: `Cart not found for userid:-${userId}` })
+            return res.status(404).send({ status: false, message: `Cart not found for userid` })
         }
 
 
@@ -212,6 +209,7 @@ const updateCart = async(req, res) => {
     }
 }
 
+// ****************************************************************************************************************
 
 const getCart = async function(req, res) {
 
@@ -231,6 +229,7 @@ const getCart = async function(req, res) {
     }
 }
 
+// ****************************************************************************************************************
 
 const deleteCart = async function(req, res) {
 
@@ -256,6 +255,13 @@ module.exports.createCart = createCart
 module.exports.updateCart = updateCart
 module.exports.getCart = getCart
 module.exports.deleteCart = deleteCart
+
+
+
+
+
+
+
 
 
 //diff between programming and scripting language, javascript is:-
